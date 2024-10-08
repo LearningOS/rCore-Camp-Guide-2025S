@@ -17,7 +17,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'rCore-Tutorial-Guide-2024A'
+project = 'rCore-Camp-Guide-2024A'
 copyright = 'OS2024Autumn'
 author = 'Yifan Wu'
 language = 'zh_CN'
@@ -39,7 +39,7 @@ extensions = [
 
 comments_config = {
    "utterances": {
-       "repo": "LearningOS/rCore-Tutorial-Guide-2024A",
+       "repo": "LearningOS/rCore-Camp-Guide-2024A",
        "issue-term": "pathname",
        "label": "comments",
        "theme": "github-light",
