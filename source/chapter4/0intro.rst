@@ -19,7 +19,7 @@
    $ git clone https://github.com/LearningOS/rCore-Camp-Code-2024A.git
    $ cd rCore-Camp-Code-2024A
    $ git checkout ch4
-   $ git clone https://github.com/LearningOS/rCore-Tutorial-Test-2024A.git user
+   $ git clone https://github.com/LearningOS/rCore-Tutorial-Test-2025S.git user
 
 或许你之前已经克隆过了仓库，只希望从远程仓库更新，而非再克隆一次：
 

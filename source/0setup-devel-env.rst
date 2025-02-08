@@ -197,6 +197,7 @@ Qemu 模拟器安装
 
 .. code-block:: bash
 
+<<<<<<< HEAD
    # git clone https://github.com/LearningOS/rCore-Camp-Code-2024A
    # cd rCore-Camp-Code-2024A
    # 
@@ -204,6 +205,10 @@ Qemu 模拟器安装
    # 假设你的用户名是 XXXX，那么命令为
    git clone https://github.com/LearningOS/2024a-rcore-XXXX
    cd 2024a-rcore-XXXX
+=======
+   git clone https://github.com/LearningOS/rCore-Tutorial-Code-2025S
+   cd rCore-Tutorial-Code-2025S
+>>>>>>> 2454929 (update ch3/4/5 test)
 
 我们先运行不需要处理用户代码的 ch1 分支：
 
@@ -215,7 +220,7 @@ Qemu 模拟器安装
 
 如果你的环境配置正确，你应当会看到如下输出：
 
-.. code-block:: bash
+.. code-block::
 
    [rustsbi] RustSBI version 0.3.0-alpha.4, adapting to RISC-V SBI v1.0.0
    .______       __    __      _______.___________.  _______..______   __

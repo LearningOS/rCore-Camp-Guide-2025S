@@ -7,39 +7,31 @@ chapter3练习
 获取任务信息
 ++++++++++++++++++++++++++
 
-ch3 中，我们的系统已经能够支持多个任务分时轮流运行，我们希望引入一个新的系统调用 ``sys_task_info`` 以获取当前任务的信息，定义如下：
+在 ch3 中，我们的系统已经能够支持多个任务分时轮流运行，我们希望引入一个新的系统调用 ``sys_trace``（ID 为 410）用来追踪当前任务系统调用的历史信息，并做对应的修改。定义如下。
 
 .. code-block:: rust
 
-    fn sys_task_info(ti: *mut TaskInfo) -> isize
+    fn sys_trace(_trace_request: usize, _id: usize, _data: usize) -> isize
 
-- syscall ID: 410
-- 查询当前正在执行的任务信息，任务信息包括任务控制块相关信息（任务状态）、任务使用的系统调用及调用次数、系统调用时刻距离任务第一次被调度时刻的时长（单位ms）。
 
-.. code-block:: rust
+- 调用规范：
+   - 这个系统调用有三种功能，根据 ``trace_request`` 的值不同，执行不同的操作：
+   - 如果 ``trace_request`` 为 0，则 ``id`` 应被视作 ``*const u8`` ，表示读取当前任务 ``id`` 地址处一个字节的无符号整数值。此时应忽略 ``data`` 参数。返回值为 ``id`` 地址处的值。
+   - 如果 ``trace_request`` 为 1，则 ``id`` 应被视作 ``*const u8`` ，表示写入 ``data`` （作为 ``u8``，即只考虑最低位的一个字节）到该用户程序 ``id`` 地址处。返回值应为0。
+   - 如果 ``trace_request`` 为 2，表示查询当前任务调用编号为 ``id`` 的系统调用的次数，返回值为这个调用次数。**本次调用也计入统计** 。
+   - 否则，忽略其他参数，返回值为 -1。
 
-    struct TaskInfo {
-        status: TaskStatus,
-        syscall_times: [u32; MAX_SYSCALL_NUM],
-        time: usize
-    }
-
-- 参数：
-    - ti: 待查询任务信息
-- 返回值：执行成功返回0，错误返回-1
 - 说明：
-    - 相关结构已在框架中给出，只需添加逻辑实现功能需求即可。
-    - 在我们的实验中，系统调用号一定小于 500，所以直接使用一个长为 ``MAX_SYSCALL_NUM=500`` 的数组做桶计数。
-    - 运行时间 time 返回系统调用时刻距离任务第一次被调度时刻的时长，也就是说这个时长可能包含该任务被其他任务抢占后的等待重新调度的时间。
-    - 由于查询的是当前任务的状态，因此 TaskStatus 一定是 Running。（助教起初想设计根据任务 id 查询，但是既不好定义任务 id 也不好写测例，遂放弃 QAQ）
-    - 调用 ``sys_task_info`` 也会对本次调用计数。
-- 提示：
-    - 大胆修改已有框架！除了配置文件，你几乎可以随意修改已有框架的内容。
-    - 程序运行时间可以通过调用 ``get_time()`` 获取，注意任务运行总时长的单位是 ms。
-    - 系统调用次数可以考虑在进入内核态系统调用异常处理函数之后，进入具体系统调用函数之前维护。
-    - 阅读 TaskManager 的实现，思考如何维护内核控制块信息（可以在控制块可变部分加入需要的信息）。
-    - 虽然系统调用接口采用桶计数，但是内核采用相同的方法进行维护会遇到什么问题？是不是可以用其他结构计数？
+   - 你可能会注意到，这个调用的读写并不安全，使用不当可能导致崩溃。这是因为在下一章节实现地址空间之前，系统中缺乏隔离机制。所以我们 **不要求你实现安全检查机制，只需通过测试用例即可** 。
+   - 你还可能注意到，这个系统调用读写本任务内存的功能并不是很有用。这是因为作业的灵感来源 syscall 主要依靠 trace 功能追踪其他任务的信息，但在本章节我们还没有进程、线程等概念，所以简化了操作，只要求追踪自身的信息。
 
+.. hint::
+   
+    - 大胆修改已有框架！除了配置文件，你几乎可以随意修改已有框架的内容。
+    - 系统调用次数可以考虑在内核态的 ``syscall`` 函数中统计。
+    - 可以扩展 ``TaskManagerInner`` 中的结构来维护新的信息。
+    - 不要害怕使用 ``unsafe`` 做类型转换，这在内核处理用户调用时是不可避免的。
+    - 在实现时，可以把系统调用参数中前缀的下划线去掉，这样更清晰。实验框架之所以这么写，是因为在没有使用对应参数的情况下，Rust 推荐使用下划线前缀以避免警告。
 
 实验要求
 +++++++++++++++++++++++++++++++++++++++++
@@ -76,16 +68,6 @@ ch3 中，我们的系统已经能够支持多个任务分时轮流运行，我�
       riscv = { git = "https://gitee.com/rcore-os/riscv", features = ["inline-asm"] }
       virtio-drivers = { git = "https://gitee.com/rcore-os/virtio-drivers", rev = "4ee80e5" }
 
-
-- 本地运行 CI 脚本的方法（注意 CI 脚本会修改代码仓库的文件，请在运行前暂存改动）：
-
-   .. code-block:: shell
-
-      git clone https://github.com/LearningOS/rCore-Tutorial-Checker-2024A ci-user
-      git clone https://github.com/LearningOS/rCore-Tutorial-Test-2024A ci-user/user
-      cd ci-user && make test CHAPTER=$ID
-
-
 .. note::
 
     你的实现只需且必须通过测例，建议读者感到困惑时先检查测例。
@@ -95,13 +77,13 @@ ch3 中，我们的系统已经能够支持多个任务分时轮流运行，我�
 --------------------------------------------
 
 1. 正确进入 U 态后，程序的特征还应有：使用 S 态特权指令，访问 S 态寄存器后会报错。
-   请同学们可以自行测试这些内容（运行 `三个 bad 测例 (ch2b_bad_*.rs) <https://github.com/LearningOS/rCore-Tutorial-Test-2024A/tree/master/src/bin>`_ ），
+   请同学们可以自行测试这些内容（运行 `三个 bad 测例 (ch2b_bad_*.rs) <https://github.com/LearningOS/rCore-Tutorial-Test-2025S/tree/master/src/bin>`_ ），
    描述程序出错行为，同时注意注明你使用的 sbi 及其版本。
 
 2. 深入理解 `trap.S <https://github.com/LearningOS/rCore-Camp-Code-2024A/blob/ch3/os/src/trap/trap.S>`_
    中两个函数 ``__alltraps`` 和 ``__restore`` 的作用，并回答如下问题:
 
-   1. L40：刚进入 ``__restore`` 时，``a0`` 代表了什么值。请指出 ``__restore`` 的两种使用情景。
+   1. L40：刚进入 ``__restore`` 时，``sp`` 代表了什么值。请指出 ``__restore`` 的两种使用情景。
 
    2. L43-L48：这几行汇编代码特殊处理了哪些寄存器？这些寄存器的的值对于进入用户态有何意义？请分别解释。
 
