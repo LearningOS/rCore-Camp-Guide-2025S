@@ -20,12 +20,12 @@
 实践体验
 ---------------------------
 
-本章我们引入了用户程序。为了将内核与应用解耦，我们将二者分成了两个仓库，分别是存放内核程序的 ``rCore-Tutorial-Code-20xxx`` （下称代码仓库，最后几位 x 表示学期）与存放用户程序的 ``rCore-Tutorial-Test-20xxx`` （下称测例仓库）。 你首先需要进入代码仓库文件夹并 clone 用户程序仓库（如果已经执行过该步骤则不需要再重复执行）：
+本章我们引入了用户程序。为了将内核与应用解耦，我们将二者分成了两个仓库，分别是存放内核程序的 ``rCore-Camp-Code-20xxx`` （下称代码仓库，最后几位 x 表示学期）与存放用户程序的 ``rCore-Tutorial-Test-20xxx`` （下称测例仓库）。 你首先需要进入代码仓库文件夹并 clone 用户程序仓库（如果已经执行过该步骤则不需要再重复执行）：
 
 .. code-block:: console
 
-   $ git clone https://github.com/LearningOS/rCore-Camp-Code-2024A.git
-   $ cd rCore-Camp-Code-2024A
+   $ git clone https://github.com/LearningOS/rCore-Camp-Code-2025S.git
+   $ cd rCore-Camp-Code-2025S
    $ git checkout ch2
    $ git clone https://github.com/LearningOS/rCore-Tutorial-Test-2025S.git user
 

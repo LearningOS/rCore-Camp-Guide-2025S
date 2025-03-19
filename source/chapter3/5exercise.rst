@@ -80,7 +80,7 @@ chapter3练习
    请同学们可以自行测试这些内容（运行 `三个 bad 测例 (ch2b_bad_*.rs) <https://github.com/LearningOS/rCore-Tutorial-Test-2025S/tree/master/src/bin>`_ ），
    描述程序出错行为，同时注意注明你使用的 sbi 及其版本。
 
-2. 深入理解 `trap.S <https://github.com/LearningOS/rCore-Camp-Code-2024A/blob/ch3/os/src/trap/trap.S>`_
+2. 深入理解 `trap.S <https://github.com/LearningOS/rCore-Camp-Code-2025S/blob/ch3/os/src/trap/trap.S>`_
    中两个函数 ``__alltraps`` 和 ``__restore`` 的作用，并回答如下问题:
 
    1. L40：刚进入 ``__restore`` 时，``sp`` 代表了什么值。请指出 ``__restore`` 的两种使用情景。
