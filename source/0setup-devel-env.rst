@@ -197,20 +197,6 @@ Qemu 模拟器安装
 
 .. code-block:: bash
 
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-   # git clone https://github.com/LearningOS/rCore-Camp-Code-2024A
-   # cd rCore-Camp-Code-2024A
-   # 
-   # 上面的命令仅用于测试，请参加训练营的同学使用 Github Classroom 生成的仓库
-   # 假设你的用户名是 XXXX，那么命令为
-   git clone https://github.com/LearningOS/2024a-rcore-XXXX
-   cd 2024a-rcore-XXXX
-=======
-   git clone https://github.com/LearningOS/rCore-Camp-Code-2025S
-   cd rCore-Camp-Code-2025S
->>>>>>> 2454929 (update ch3/4/5 test)
-=======
    # git clone https://github.com/LearningOS/rCore-Camp-Code-2025S
    # cd rCore-Camp-Code-2025S
    # 
@@ -218,7 +204,6 @@ Qemu 模拟器安装
    # 假设你的用户名是 XXXX，那么命令为
    git clone https://github.com/LearningOS/2025S-rcore-XXXX
    cd 2025S-rcore-XXXX
->>>>>>> Stashed changes
 
 我们先运行不需要处理用户代码的 ch1 分支：
 
