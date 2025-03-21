@@ -157,7 +157,6 @@
   <p class="caption" role="heading"><span class="caption-text">正文</span></p>
 <ul class="current">
 <li class="toctree-l1 current current-page"><a class="current reference internal" href="#">第零章：实验环境配置</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#update-ch3-4-5-test">&gt;&gt;&gt;&gt;&gt;&gt;&gt; 2454929 (update ch3/4/5 test)</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="chapter1/index.html">第一章：应用程序与基本执行环境</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="chapter1/0intro.html">引言</a></li>
 <li class="toctree-l2"><a class="reference internal" href="chapter1/1app-ee-platform.html">应用程序执行环境与平台支持</a></li>
@@ -427,34 +426,15 @@ qemu-riscv64 --version
 <div class="section" id="rcore-tutorial">
 <h2>试运行 rCore-Tutorial<a class="headerlink" href="#rcore-tutorial" title="永久链接至标题">¶</a></h2>
 <p>首先拉取 rCore 仓库</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># git clone https://github.com/LearningOS/rCore-Camp-Code-2025S</span>
+<span class="c1"># cd rCore-Camp-Code-2025S</span>
+<span class="c1">#</span>
+<span class="c1"># 上面的命令仅用于测试，请参加训练营的同学使用 Github Classroom 生成的仓库</span>
+<span class="c1"># 假设你的用户名是 XXXX，那么命令为</span>
+git clone https://github.com/LearningOS/2025S-rcore-XXXX
+<span class="nb">cd</span> 2025S-rcore-XXXX
 </pre></div>
 </div>
-<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; Updated upstream
-&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p>
-<blockquote>
-<div><p># git clone <a class="reference external" href="https://github.com/LearningOS/rCore-Camp-Code-2024A">https://github.com/LearningOS/rCore-Camp-Code-2024A</a>
-# cd rCore-Camp-Code-2024A
-#
-# 上面的命令仅用于测试，请参加训练营的同学使用 Github Classroom 生成的仓库
-# 假设你的用户名是 XXXX，那么命令为
-git clone <a class="reference external" href="https://github.com/LearningOS/2024a-rcore-XXXX">https://github.com/LearningOS/2024a-rcore-XXXX</a>
-cd 2024a-rcore-XXXX</p>
-</div></blockquote>
-</div>
-</div>
-<div class="section" id="update-ch3-4-5-test">
-<h1>&gt;&gt;&gt;&gt;&gt;&gt;&gt; 2454929 (update ch3/4/5 test)<a class="headerlink" href="#update-ch3-4-5-test" title="永久链接至标题">¶</a></h1>
-<blockquote>
-<div><p># git clone <a class="reference external" href="https://github.com/LearningOS/rCore-Camp-Code-2025S">https://github.com/LearningOS/rCore-Camp-Code-2025S</a>
-# cd rCore-Camp-Code-2025S
-#
-# 上面的命令仅用于测试，请参加训练营的同学使用 Github Classroom 生成的仓库
-# 假设你的用户名是 XXXX，那么命令为
-git clone <a class="reference external" href="https://github.com/LearningOS/2025S-rcore-XXXX">https://github.com/LearningOS/2025S-rcore-XXXX</a>
-cd 2025S-rcore-XXXX</p>
-</div></blockquote>
-<p>&gt;&gt;&gt;&gt;&gt;&gt;&gt; Stashed changes</p>
 <p>我们先运行不需要处理用户代码的 ch1 分支：</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git checkout ch1
 <span class="nb">cd</span> os
@@ -503,6 +483,7 @@ cd 2025S-rcore-XXXX</p>
 </div>
 </div>
 <p>恭喜你完成了实验环境的配置，可以开始阅读教程的正文部分了！</p>
+</div>
 <div class="section" id="gdb">
 <h2>GDB 调试支持*<a class="headerlink" href="#gdb" title="永久链接至标题">¶</a></h2>
 <div class="admonition attention">
@@ -584,9 +565,6 @@ cd 2025S-rcore-XXXX</p>
 <li><a class="reference internal" href="#rust">Rust 开发环境配置</a></li>
 <li><a class="reference internal" href="#qemu">Qemu 模拟器安装</a></li>
 <li><a class="reference internal" href="#rcore-tutorial">试运行 rCore-Tutorial</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#update-ch3-4-5-test">&gt;&gt;&gt;&gt;&gt;&gt;&gt; 2454929 (update ch3/4/5 test)</a><ul>
 <li><a class="reference internal" href="#gdb">GDB 调试支持*</a></li>
 </ul>
 </li>
